@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+pascal triangle
+"""
 
 def pascal_triangle(n: int):
     """ function to create the pascal triangle
