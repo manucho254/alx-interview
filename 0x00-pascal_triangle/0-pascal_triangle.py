@@ -7,7 +7,7 @@ def pascal_triangle(n: int):
     """ function to create the pascal triangle
         Args:
             n (_type_): number of rows
-        Returns: an array of integer
+        Return: an array of integer
     """
     triangle = []
     for x in range(n):
