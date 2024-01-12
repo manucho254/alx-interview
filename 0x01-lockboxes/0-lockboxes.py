@@ -51,7 +51,7 @@ def canUnlockAll(boxes: List[List]) -> bool:
                     available_keys = add_to_dict(available_keys, boxes[box])
                     del available_keys[box]
 
-        for box in opened_boxes:
+        for box in opened_boxes.values():
             if not box:
                 return False
         return True
