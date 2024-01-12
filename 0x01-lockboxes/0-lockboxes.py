@@ -25,10 +25,14 @@ def canUnlockAll(boxes: List[List]) -> bool:
         if x in all_boxes:
             available_keys[x] = x
 
-    count = 20
+    # for cases where keys are found in one box
+    if list(available_keys.values()) == all_boxes:
+        return True
+
+    count = 10
     while count > 0:
         for box in range(1, len(boxes)):
-            if box in available_keys:
+            if box in available_keys.values():
                 for k in boxes[box]:
                     if k in all_boxes:
                         available_keys[k] = k
