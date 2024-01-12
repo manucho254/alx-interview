@@ -28,7 +28,8 @@ def canUnlockAll(boxes: List[List]) -> bool:
         for box in range(1, len(boxes)):
             if box in available_keys:
                 for k in boxes[box]:
-                    available_keys[k] = k
+                    if k in range(len(boxes)):
+                        available_keys[k] = k
         count -= 1
 
     return len(available_keys) == len(boxes)
