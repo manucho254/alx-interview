@@ -12,19 +12,23 @@ def canUnlockAll(boxes: List[List]) -> bool:
     Returns:
         bool: _description_
     """
-    if boxes is not None or len(boxes) > 0:
-        available_keys = {0: 0}
-        # add all keys found in first box to available keys
-        for x in boxes[0]:
-            available_keys[x] = x
+    if not isinstance(boxes, list):
+        return False
 
-        count = 20
-        while count > 0:
-            for box in range(1, len(boxes)):
-                if box in available_keys:
-                    for k in boxes[box]:
-                        available_keys[k] = k
-            count -= 1
+    if len(boxes) <= 1:
+        return True
 
-        return len(available_keys) == len(boxes)
-    return False
+    available_keys = {0: 0}
+    # add all keys found in first box to available keys
+    for x in boxes[0]:
+        available_keys[x] = x
+
+    count = 20
+    while count > 0:
+        for box in range(1, len(boxes)):
+            if box in available_keys:
+                for k in boxes[box]:
+                    available_keys[k] = k
+        count -= 1
+
+    return len(available_keys) == len(boxes)
