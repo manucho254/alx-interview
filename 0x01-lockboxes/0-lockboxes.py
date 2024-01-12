@@ -12,14 +12,13 @@ def canUnlockAll(boxes: List[List]) -> bool:
     Returns:
         bool: _description_
     """
-    if len(boxes) > 0:
+    if boxes is not None or len(boxes) > 0:
         available_keys = {0: 0}
-        open = set()
         # add all keys found in first box to available keys
         for x in boxes[0]:
             available_keys[x] = x
 
-        count = 100
+        count = 20
         while count > 0:
             for box in range(1, len(boxes)):
                 if box in available_keys:
