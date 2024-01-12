@@ -18,12 +18,12 @@ def canUnlockAll(boxes: List[List]) -> bool:
         for x in boxes[0]:
             available_keys[x] = x
 
-        count = 100
+        count = 5
         while count > 0:
             for box in range(len(boxes)):
                 if box in available_keys:
-                    for x in boxes[box]:
-                        available_keys[x] = x
+                    for k in boxes[box]:
+                        available_keys[k] = k
             count -= 1
 
         return len(available_keys) == len(boxes)
