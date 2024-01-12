@@ -27,7 +27,7 @@ def canUnlockAll(boxes: List[List]) -> bool:
     Returns:
         bool: _description_
     """
-    if boxes:
+    if len(boxes) > 0:
         available_keys = {}
         opened_boxes = {0: True}
 
@@ -46,13 +46,10 @@ def canUnlockAll(boxes: List[List]) -> bool:
                     del available_keys[box]
                 # mark box as open and remove key from available keys
                 # also add all keys in box to available keys
-                if available_keys.get(box) and not opened_boxes[box]:
+                if available_keys.get(box) and not opened_boxes.get(box):
                     opened_boxes[box] = True
                     available_keys = add_to_dict(available_keys, boxes[box])
                     del available_keys[box]
 
-        for box in opened_boxes.values():
-            if not box:
-                return False
-        return True
+        return all(opened_boxes.values())
     return False
