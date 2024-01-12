@@ -27,28 +27,32 @@ def canUnlockAll(boxes: List[List]) -> bool:
     Returns:
         bool: _description_
     """
+    if boxes:
+        available_keys = {}
+        opened_boxes = {0: True}
 
-    available_keys = {}
-    opened_boxes = {0: True}
-
-    # set all boxes open state to false
-    for box in range(1, len(boxes)):
-        opened_boxes[box] = False
-
-    # add all keys found in first box to available keys
-    for x in boxes[0]:
-        available_keys[x] = x
-
-    while len(available_keys) > 0:
+        # set all boxes open state to false
         for box in range(1, len(boxes)):
-            # remove key from available keys if box is already open
-            if opened_boxes.get(box) and available_keys.get(box):
-                del available_keys[box]
-            # mark box as open and remove key from available keys
-            # also add all keys in box to available keys
-            if available_keys.get(box) and not opened_boxes[box]:
-                opened_boxes[box] = True
-                available_keys = add_to_dict(available_keys, boxes[box])
-                del available_keys[box]
+            opened_boxes[box] = False
 
-    return all(opened_boxes.values())
+        # add all keys found in first box to available keys
+        for x in boxes[0]:
+            available_keys[x] = x
+
+        while len(available_keys) > 0:
+            for box in range(1, len(boxes)):
+                # remove key from available keys if box is already open
+                if opened_boxes.get(box) and available_keys.get(box):
+                    del available_keys[box]
+                # mark box as open and remove key from available keys
+                # also add all keys in box to available keys
+                if available_keys.get(box) and not opened_boxes[box]:
+                    opened_boxes[box] = True
+                    available_keys = add_to_dict(available_keys, boxes[box])
+                    del available_keys[box]
+
+        for box in opened_boxes:
+            if not box:
+                return False
+        return True
+    return False
