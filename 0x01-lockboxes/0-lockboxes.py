@@ -31,10 +31,6 @@ def canUnlockAll(boxes: List[List]) -> bool:
         available_keys = {}
         opened_boxes = {0: True}
 
-        # set all boxes open state to false
-        for box in range(1, len(boxes)):
-            opened_boxes[box] = False
-
         # add all keys found in first box to available keys
         for x in boxes[0]:
             available_keys[x] = x
@@ -50,6 +46,16 @@ def canUnlockAll(boxes: List[List]) -> bool:
                     opened_boxes[box] = True
                     available_keys = add_to_dict(available_keys, boxes[box])
                     del available_keys[box]
-
-        return all(opened_boxes.values())
+                    
+        return len(opened_boxes) == len(boxes)
+    
     return False
+
+boxes = [[1], [2], [3], [4], []]
+print(canUnlockAll(boxes))
+
+boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
+print(canUnlockAll(boxes))
+
+boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
+print(canUnlockAll(boxes))
