@@ -46,16 +46,7 @@ def canUnlockAll(boxes: List[List]) -> bool:
                     opened_boxes[box] = True
                     available_keys = add_to_dict(available_keys, boxes[box])
                     del available_keys[box]
-                    
+
         return len(opened_boxes) == len(boxes)
-    
+
     return False
-
-boxes = [[1], [2], [3], [4], []]
-print(canUnlockAll(boxes))
-
-boxes = [[1, 4, 6], [2], [0, 4, 1], [5, 6, 2], [3], [4, 1], [6]]
-print(canUnlockAll(boxes))
-
-boxes = [[1, 4], [2], [0, 4, 1], [3], [], [4, 1], [5, 6]]
-print(canUnlockAll(boxes))
