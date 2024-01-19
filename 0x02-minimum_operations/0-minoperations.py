@@ -14,8 +14,8 @@ def minOperations(n: int) -> int:
     if n <= 1:
         return 0
 
-    operations: List = []
-    divisor: int = 2
+    operations = []
+    divisor = 2
 
     while divisor <= n:
         if n % divisor == 0:
