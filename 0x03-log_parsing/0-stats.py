@@ -17,7 +17,7 @@ def print_status(codes, total):
         total: total size
     """
     print("File size: {}".format(total))
-    for key, val in codes.items():
+    for key, val in sorted(codes.items()):
         print("{}: {}".format(key, val))
 
 
