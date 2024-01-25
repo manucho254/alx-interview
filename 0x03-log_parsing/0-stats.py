@@ -41,6 +41,6 @@ try:
         if line_count % 10 == 0 and line_count >= 10:
             print_status(status_codes, total_size)
 
-except KeyboardInterrupt as e:
+except KeyboardInterrupt:
     print_status(status_codes, total_size)
-    raise e
+    sys.exit(0)
