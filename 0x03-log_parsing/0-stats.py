@@ -5,8 +5,7 @@ import sys
 
 
 def print_status(status_codes, total_size):
-    """ print status codes
-    """
+    """print status codes"""
     print("File size: {}".format(total_size))
     for key, val in status_codes.items():
         print("{}: {}".format(key, val))
@@ -19,25 +18,24 @@ total_size = 0
 
 
 if __name__ == "__main__":
-    while True:
-        try:
-            for line in sys.stdin:
-                split_line = line.split(" ")
-                status_code: str = split_line[-2]
-                file_size = split_line[-1]
+    try:
+        for line in sys.stdin:
+            split_line = line.split(" ")
+            status_code: str = split_line[-2]
+            file_size = split_line[-1]
 
-                if status_code.isnumeric() and status_code in possible_codes:
-                    if status_codes.get(status_code) is not None:
-                        status_codes[status_code] += 1
-                    else:
-                        status_codes[status_code] = 1
+            if status_code.isnumeric() and status_code in possible_codes:
+                if status_codes.get(status_code) is not None:
+                    status_codes[status_code] += 1
+                else:
+                    status_codes[status_code] = 1
 
-                if line_count % 10 == 0 and line_count >= 10:
-                    print_status(status_codes, total_size)
+            if line_count % 10 == 0 and line_count >= 10:
+                print_status(status_codes, total_size)
 
-                total_size += int(file_size)
-                line_count += 1
+            total_size += int(file_size)
+            line_count += 1
 
-        except KeyboardInterrupt as e:
-            print_status(status_codes, total_size)
-            raise e
+    except KeyboardInterrupt as e:
+        print_status(status_codes, total_size)
+        raise e
