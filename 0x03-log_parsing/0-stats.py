@@ -38,7 +38,7 @@ try:
             else:
                 status_codes[status_code] = 1
 
-        if line_count % 10 == 0:
+        if line_count % 10 == 0 and line_count >= 10:
             print_status(status_codes, total_size)
 
 except KeyboardInterrupt as e:
