@@ -24,15 +24,18 @@ if __name__ == "__main__":
                 status_code: str = split_line[-2]
                 file_size = split_line[-1]
 
-                if status_code.isnumeric() and status_codes.get(int(status_code)):
+                if status_code.isnumeric():
+                    code = int(status_code)
+                    status_codes[code] += 1
                     print(
-                        "{}: {}".format(status_code, status_codes.get(int(status_code)))
+                        "{}: {}".format(status_code, status_codes.get(code))
                     )
 
                 if line_count % 10 == 0:
                     print("File size: {}".format(total_size))
 
                 total_size += int(file_size)
+                line_count += 1
 
         except KeyboardInterrupt as e:
             raise e
