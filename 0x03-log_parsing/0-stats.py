@@ -2,12 +2,23 @@
 """ Log parsing module
 """
 import sys
+import re
 
 
 status_codes = {}
 possible_codes = [200, 301, 400, 401, 403, 404, 405, 500]
 line_count = 0
 total_size = 0
+
+
+def valid_format(line):
+    """checks if the line have a valid format"""
+    pattern = (
+        r"^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - "
+        r'\[([^\]]+)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
+    )
+    match = re.match(pattern, line)
+    return bool(match)
 
 
 def print_status(codes, total):
@@ -23,6 +34,9 @@ def print_status(codes, total):
 
 try:
     for line in sys.stdin:
+        if not valid_format(valid_format):
+            continue
+
         split_line = line.split(" ")
         status_code = 0
         file_size = 0
