@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ Log parsing module
 """
-import re
 import sys
 
 status_codes = {}
@@ -9,17 +8,6 @@ possible_codes = [200, 301, 400, 401, 403, 404, 405, 500]
 line_count = 0
 total_size = 0
 status_code = 0
-
-
-def log_pattern(log_str):
-    """match log pattern
-    Args:
-        log_str (_type_): _description_
-    """
-    pattern = re.compile(
-        r'^(\d+\.\d+\.\d+\.\d+) - \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+)\] "([^"]+)" (\d{3}) (\d+)$'
-    )
-    return pattern.match(log_str)
 
 
 def print_status(codes, total):
@@ -35,7 +23,7 @@ def print_status(codes, total):
 
 try:
     for line in sys.stdin:
-        if log_pattern(line) is None:
+        if not line:
             continue
 
         split_line = line.split(" ")
