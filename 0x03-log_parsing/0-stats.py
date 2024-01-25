@@ -24,7 +24,7 @@ def print_status(codes, total):
 try:
     for line in sys.stdin:
         split_line = line.split(" ")
-        status_code: str = split_line[-2]
+        status_code = split_line[-2]
         file_size = split_line[-1]
 
         if status_code.isnumeric() and status_code in possible_codes:
