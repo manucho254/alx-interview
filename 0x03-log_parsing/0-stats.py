@@ -24,15 +24,13 @@ if __name__ == "__main__":
                 status_code: str = split_line[-2]
                 file_size = split_line[-1]
 
-                if status_code.isnumeric():
+                if line_count % 10 == 0 and line_count >= 10:
+                    print("File size: {}".format(total_size))
+
+                if status_code.isnumeric() and line_count >= 10:
                     code = int(status_code)
                     status_codes[code] += 1
-                    print(
-                        "{}: {}".format(status_code, status_codes.get(code))
-                    )
-
-                if line_count % 10 == 0:
-                    print("File size: {}".format(total_size))
+                    print("{}: {}".format(status_code, status_codes.get(code)))
 
                 total_size += int(file_size)
                 line_count += 1
