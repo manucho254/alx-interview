@@ -42,5 +42,6 @@ try:
             print_status(status_codes, total_size)
 
 except KeyboardInterrupt:
+    pass
+finally:
     print_status(status_codes, total_size)
-    sys.exit(0)
