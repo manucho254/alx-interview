@@ -29,7 +29,7 @@ try:
         try:
             status_code = int(split_line[-2])
             total_size += int(split_line[-1])
-        except Exception as e:
+        except TypeError:
             continue
 
         if status_code in possible_codes:
