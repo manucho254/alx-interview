@@ -31,7 +31,7 @@ try:
             status_code = int(split_line[-2])
             file_size = int(split_line[-1])
         except Exception as e:
-            pass
+            continue
 
         if status_code in possible_codes:
             if status_codes.get(status_code) is not None:
