@@ -24,10 +24,6 @@ def print_status(codes, total):
 try:
     for line in sys.stdin:
         split_line = line.split(" ")
-
-        if len(split_line) < 9:
-            continue
-
         line_count += 1
 
         try:
