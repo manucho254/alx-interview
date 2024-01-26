@@ -23,17 +23,17 @@ def print_status(codes, total):
 
 try:
     for line in sys.stdin:
-        if not line:
+        split_line = line.split(" ")
+        if len(split_line) < 9:
             continue
 
-        split_line = line.split(" ")
         line_count += 1
 
         try:
             status_code = int(split_line[-2])
             total_size += int(split_line[-1])
-        except TypeError:
-            continue
+        except TypeError as e:
+            raise e
 
         if status_code in possible_codes:
             if status_codes.get(status_code):

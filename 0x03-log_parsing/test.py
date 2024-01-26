@@ -1,1 +1,1 @@
-print(int([4]))
+print(int("39\n"))
