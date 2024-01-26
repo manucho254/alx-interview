@@ -34,7 +34,7 @@ try:
             total_size += int(split_line[-1])
             status_code = int(split_line[-2])
         except TypeError as e:
-            raise e
+            continue
 
         if status_code in possible_codes:
             if status_codes.get(status_code):
