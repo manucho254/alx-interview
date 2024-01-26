@@ -24,14 +24,15 @@ def print_status(codes, total):
 try:
     for line in sys.stdin:
         split_line = line.split(" ")
+
         if len(split_line) < 9:
             continue
 
         line_count += 1
 
         try:
-            status_code = int(split_line[-2])
             total_size += int(split_line[-1])
+            status_code = int(split_line[-2])
         except TypeError as e:
             raise e
 
