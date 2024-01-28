@@ -24,6 +24,11 @@ def print_status(codes, total):
 try:
     for line in sys.stdin:
         split_line = line.split(" ")
+
+        # check for invalid lines
+        if len(split_line) < 9:
+            continue
+
         line_count += 1
 
         if split_line[-1].strip("\n").isnumeric():
