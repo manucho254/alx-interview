@@ -8,7 +8,6 @@ possible_codes = [200, 301, 400, 401, 403, 404, 405, 500]
 line_count = 0
 total_size = 0
 status_code = 0
-file_size = 0
 
 
 def print_status(codes, total):
