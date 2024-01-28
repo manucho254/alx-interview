@@ -8,6 +8,7 @@ possible_codes = [200, 301, 400, 401, 403, 404, 405, 500]
 line_count = 0
 total_size = 0
 status_code = 0
+file_size = 0
 
 
 def print_status(codes, total):
@@ -26,11 +27,11 @@ try:
         split_line = line.split(" ")
         line_count += 1
 
-        try:
+        if split_line[-1].strip("\n").isnumeric():
             total_size += int(split_line[-1])
+
+        if split_line[-2].strip("\n").isnumeric():
             status_code = int(split_line[-2])
-        except TypeError as e:
-            continue
 
         if status_code in possible_codes:
             if status_codes.get(status_code):
