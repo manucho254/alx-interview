@@ -26,7 +26,7 @@ try:
         split_line = line.split(" ")
 
         # check for invalid lines
-        if len(split_line) < 9:
+        if len(split_line) < 5:
             continue
 
         line_count += 1
