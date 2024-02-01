@@ -12,13 +12,20 @@ def validUTF8(data):
         True if data is a valid UTF-8 encoding, else return False
     """
 
-    try:
-        for x in data:
-            char = chr(x)
-            new_val = char.encode("utf-8")
-            new_val.decode("ascii")
-
-        return True
-
-    except UnicodeDecodeError:
-        return False
+    val = 0
+    for x in data:
+        if val > 0:
+            if x >> 6 != 0b10:
+                return False
+            val -= 1
+        elif x >> 7 == 0:
+            val = 0
+        elif x >> 5 == 0b110:
+            val = 1
+        elif x >> 4 == 0b1110:
+            val = 2
+        elif x >> 3 == 0b11110:
+            val = 3
+        else:
+            return False
+    return val == 0
