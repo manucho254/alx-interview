@@ -19,7 +19,7 @@ def validUTF8(data):
                 return False
             val -= 1
         elif x >> 7 == 0:
-            val = 0
+            continue
         elif x >> 5 == 0b110:
             val = 1
         elif x >> 4 == 0b1110:
