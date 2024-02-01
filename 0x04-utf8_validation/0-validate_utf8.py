@@ -11,14 +11,14 @@ def validUTF8(data):
     Return:
         True if data is a valid UTF-8 encoding, else return False
     """
-    # word = ""
-    sizes = []
-    for x in data:
-        # word += chr(x)
-        sizes.append(len(chr(x).encode('utf-8')))
-        
-    for i in sizes:
-        if i > 1:
-            return False
-        
-    return True
+
+    try:
+        for x in data:
+            char = chr(x)
+            new_val = char.encode("utf-8")
+            new_val.decode("ascii")
+
+        return True
+
+    except UnicodeDecodeError:
+        return False
