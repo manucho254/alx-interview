@@ -14,6 +14,7 @@ def validUTF8(data):
 
     val = 0
     for x in data:
+        x %= 256
         if val > 0:
             if x >> 6 != 0b10:
                 return False
