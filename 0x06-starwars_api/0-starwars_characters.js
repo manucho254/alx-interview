@@ -1,30 +1,50 @@
 #!/usr/bin/node
 
-const request = require("request");
+const request = require('request');
 
-if (process.argv.length < 2) {
-  process.exit(1);
+if (process.argv.length < 3) {
+  process.exit(0);
 }
 
-const filmId = process.argv[1];
-const filmUrl = `https://swapi-api.alx-tools.com/api/films/${filmId}`;
+const filmId = process.argv[2];
+const filmUrl = `https://swapi-api.alx-tools.com/api/films/${filmId}/`;
 
-function make_Get_Request(url) {
+/**
+ * make a get request and return a promise
+ */
+function makeGetRequest (url) {
   return new Promise((resolve, reject) => {
-    request(url, (error, response, body) => {
-      // Printing the error if occurred
-      if (error) reject(error);
-      else resolve(body);
+    request.get(url, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else if (response.statusCode !== 200) {
+        reject(response.statusCode);
+      } else {
+        // Parse the JSON response
+        resolve(JSON.parse(body));
+      }
     });
   });
 }
 
-make_Get_Request(filmUrl).then((film) => {
-  const characters = film.characters;
-  let promises = [];
-  for (let char of characters) {
-    promises.push(make_Get_Request(char));
-  }
-  let results = Promise.all(promises);
-  console.log(results);
-});
+/**
+ * main function
+ */
+async function main () {
+  await makeGetRequest(filmUrl).then((film) => {
+    const characters = film.characters;
+    const promises = [];
+
+    for (const ch of characters) {
+      promises.push(makeGetRequest(ch));
+    }
+
+    Promise.all(promises).then((people) => {
+      for (const person of people) {
+        console.log(person.name);
+      }
+    });
+  });
+}
+
+main();
