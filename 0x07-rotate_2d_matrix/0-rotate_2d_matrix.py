@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 """ Rotate a 2D matrix """
 
-from typing import List
 
-
-def rotate_2d_matrix(matrix: List[List]) -> None:
+def rotate_2d_matrix(matrix) -> None:
     """Rotate a 2d matrix by 90 degrees
     Args:
         matrix (List[List]): _description_
