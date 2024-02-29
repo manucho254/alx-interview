@@ -3,18 +3,16 @@
 
 def makeChange(coins, total):
     """Get minimum number of coins
-
     Args:
         coins (_type_): coins array
         total (_type_): total amount
-    Returns:
+    Return:
         int: minimum number of coins if found else -1
     """
     if total <= 0:
         return 0
 
     cache = {}
-
     def dp(curAmt):
         if curAmt in cache:
             return cache[curAmt]
