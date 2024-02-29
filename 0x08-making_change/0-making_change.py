@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 
 
-def makeChange(coins, total) -> int:
+def makeChange(coins, total):
     """Get minimum number of coins
 
     Args:
         coins (_type_): coins array
         total (_type_): total amount
-
     Returns:
         int: minimum number of coins if found else -1
     """
