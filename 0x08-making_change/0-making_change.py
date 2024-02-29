@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 
-def makeChange(coins, total) -> int:
+def makeChange(coins, total):
     """Get minimum number of coins
 
     Args:
@@ -17,6 +17,7 @@ def makeChange(coins, total) -> int:
     cache = {}
 
     def dp(curAmt):
+        """dp function"""
         if curAmt in cache:
             return cache[curAmt]
         elif curAmt > total:
