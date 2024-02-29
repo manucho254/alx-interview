@@ -2,29 +2,11 @@
 
 
 def makeChange(coins, total):
-    """Get minimum number of coins
-    Args:
-        coins (_type_): coins array
-        total (_type_): total amount
-    Return:
-        int: minimum number of coins if found else -1
-    """
-    if total <= 0:
-        return 0
+    """making change problem"""
+    dp = [0] + [float("inf")] * total
+    for i in range(1, total + 1):
+        for j in coins:
+            if i >= j:
+                dp[i] = min(dp[i - j] + 1, dp[i])
 
-    cache = {}
-
-    def dp(curAmt):
-        """dp function"""
-        if curAmt in cache:
-            return cache[curAmt]
-        elif curAmt > total:
-            return float("inf")
-        elif curAmt == total:
-            return 0
-
-        cache[curAmt] = min(dp(curAmt + x) + 1 for x in coins)
-        return cache[curAmt]
-
-    ans = dp(0)
-    return ans if ans != float("inf") else -1
+    return dp[total] if dp[total] != float("inf") else -1
