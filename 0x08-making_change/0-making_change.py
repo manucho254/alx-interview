@@ -13,6 +13,7 @@ def makeChange(coins, total):
         return 0
 
     cache = {}
+
     def dp(curAmt):
         if curAmt in cache:
             return cache[curAmt]
