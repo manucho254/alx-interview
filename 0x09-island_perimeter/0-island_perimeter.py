@@ -2,8 +2,6 @@
 """
  Island perimeter problem
 """
-from collections import deque
-
 
 def island_perimeter(grid):
     """Get number of islands
@@ -26,12 +24,12 @@ def island_perimeter(grid):
             r (_type_): row
             c (_type_): column
         """
-        q = deque()
+        q = []
         visited.add((r, c))
         q.append((r, c))
 
         while q:
-            row, col = q.popleft()
+            row, col = q.pop(0)
             directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
             for dr, dc in directions:
