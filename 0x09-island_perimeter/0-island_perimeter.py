@@ -17,8 +17,8 @@ def island_perimeter(grid):
     visited = set()
     islands = 0
 
-    def bfs(r, c):
-        """breath first search function
+    def dfs(r, c):
+        """depth first search function
 
         Args:
             r (_type_): row
@@ -46,7 +46,7 @@ def island_perimeter(grid):
     for r in range(rows):
         for c in range(cols):
             if grid[r][c] == 1 and (r, c) not in visited:
-                bfs(r, c)
+                dfs(r, c)
                 islands += 1
 
     return islands
