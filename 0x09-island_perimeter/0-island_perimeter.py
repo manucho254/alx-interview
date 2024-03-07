@@ -3,8 +3,9 @@
  Island perimeter problem
 """
 
+
 def island_perimeter(grid):
-    """Get number of islands
+    """Get island perimeter
 
     Args:
         grid (_type_): square grid
@@ -13,40 +14,18 @@ def island_perimeter(grid):
     if not grid:
         return 0
 
-    rows, cols = len(grid), len(grid[0])
-    visited = set()
-    islands = 0
+    m, n, Perimeter = len(grid), len(grid[0]), 0
 
-    def dfs(r, c):
-        """depth first search function
+    for i in range(m):
+        for j in range(n):
+            Perimeter += 4 * grid[i][j]
+            if i > 0:
+                Perimeter -= grid[i][j] * grid[i - 1][j]
+            if i < m - 1:
+                Perimeter -= grid[i][j] * grid[i + 1][j]
+            if j > 0:
+                Perimeter -= grid[i][j] * grid[i][j - 1]
+            if j < n - 1:
+                Perimeter -= grid[i][j] * grid[i][j + 1]
 
-        Args:
-            r (_type_): row
-            c (_type_): column
-        """
-        q = []
-        visited.add((r, c))
-        q.append((r, c))
-
-        while q:
-            row, col = q.pop()
-            directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
-
-            for dr, dc in directions:
-                r, c = row + dr, col + dc
-                if (
-                        r in range(rows) and
-                        c in range(cols) and
-                        grid[r][c] == 1 and
-                        (r, c) not in visited
-                        ):
-                    q.append((r, c))
-                    visited.add((r, c))
-
-    for r in range(rows):
-        for c in range(cols):
-            if grid[r][c] == 1 and (r, c) not in visited:
-                dfs(r, c)
-                islands += 1
-
-    return islands
+    return Perimeter
