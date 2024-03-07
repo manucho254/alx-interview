@@ -37,11 +37,11 @@ def island_perimeter(grid):
             for dr, dc in directions:
                 r, c = row + dr, col + dc
                 if (
-                    r in range(rows)
-                    and c in range(cols)
-                    and grid[r][c] == 1
-                    and (r, c) not in visited
-                ):
+                        r in range(rows) and
+                        c in range(cols) and
+                        grid[r][c] == 1 and
+                        (r, c) not in visited
+                        ):
                     q.append((r, c))
                     visited.add((r, c))
 
