@@ -13,19 +13,17 @@ def isWinner(x, nums):
 
     for j in range(x):
         primes = get_primes(nums[j])
-        if len(primes) == 0:
-            ben += 1
-        elif len(primes) % 2 == 0:
+        if len(primes) % 2 == 0:
             ben += 1
         else:
             maria += 1
-
-    if maria == ben:
-        return
-
+            
     if maria > ben:
-        return "maria"
-    return "ben"
+        return "Maria"
+    elif ben > maria:
+        return "Ben"
+    
+    return None
 
 
 def get_primes(n):
