@@ -46,8 +46,7 @@ def get_primes(n):
 
         # If prime[p] is not
         # changed, then it is a prime
-        if prime[p] == True:
-
+        if prime[p]:
             # Update all multiples of p
             for i in range(p * p, n + 1, p):
                 prime[i] = False
@@ -59,7 +58,3 @@ def get_primes(n):
             arr.append(p)
 
     return arr
-
-
-print(isWinner(5, [2, 5, 1, 4, 3]))
-print(isWinner(x=3, nums=[4, 5, 1]))
